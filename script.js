@@ -3,6 +3,7 @@ const minutoSpan=document.querySelector("#minutos");
 const segundoSpan=document.querySelector("#segundos");
 const play=document.querySelector("#play");
 const botonesTimers=document.querySelector("#botonesTimers");
+const body=document.querySelector("body");
 
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
@@ -17,25 +18,29 @@ botonesTimers.addEventListener("click",(e)=>{
         case 'work':
             minutoSpan.textContent='25';
             segundoSpan.textContent='00';
+            body.style.background="#b71717ec";
             break;
         case 'descansoCorto':
             minutoSpan.textContent='05';
             segundoSpan.textContent='00';
+            body.style.background="#3DD3F1";
             break;
         case 'descansoLargo':
             minutoSpan.textContent='15';
             segundoSpan.textContent='00';
+            body.style.background="#3DD3F1";
+            
             break;
     }
     minutos=minutoSpan.textContent;
     segundos=segundoSpan.textContent;
     timer.textContent = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
-    console.log(minutos);
     play.textContent='Play'; 
 })
 
 play.addEventListener("click",(e)=>{
     if (play.textContent==='Play'){
+        //timer.textContent = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
         timerWork(5,0);
         play.textContent='Pause'; 
     }
@@ -44,7 +49,6 @@ play.addEventListener("click",(e)=>{
         play.textContent='Play'; 
     }
 })
-
 
 
 //Funciones
