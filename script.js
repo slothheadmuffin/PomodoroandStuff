@@ -3,8 +3,11 @@ const minutoSpan=document.querySelector("#minutos");
 const segundoSpan=document.querySelector("#segundos");
 const play=document.querySelector("#play");
 const botonesTimers=document.querySelector("#botonesTimers");
+
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
+let finalTimer="00:00";
+let nose;
 
 botonesTimers.addEventListener("click",(e)=>{
     switch (e.target.id){
@@ -21,21 +24,37 @@ botonesTimers.addEventListener("click",(e)=>{
 })
 
 play.addEventListener("click",(e)=>{
-    setInterval(timerWork, 1000); 
+    if (play.textContent==='Play'){
+        timerWork(5,0);
+        play.textContent='Pause'; 
+    }
+    else{
+        pauseTimer();
+        play.textContent='Play'; 
+    }
 })
 
 function timerWork() {
-    
     if (segundos==0){
-        segundos=60;
-        minutos--;
-    }
-   
-    if (minutos=='00'){
-        minutos=5;
+        if (minutos==0){
+            return;
+        }
+        else if (minutos !=0){
+            segundos=60;
+            minutos--;
+        }
     }
     segundos--;
-    const segundosRestantes = segundos % 60;
-    timer.textContent = `${minutos.toString().padStart(2, "0")}:${segundosRestantes.toString().padStart(2, "0")}`;
+    //const segundosRestantes = segundos % 60;
+    timer.textContent = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
+    nose=setTimeout(function(){timerWork(minutos, segundos)}, 1000);
+    /*setTimeout(function () {
+        startTimer(m, s)
+    }, 1000); */
   }
  
+  function pauseTimer() {
+    finalTimer = timer.textContent;
+    clearTimeout(nose);
+}
+
