@@ -45,3 +45,7 @@ Trastes 2/7dias no 3 consecutivos
 Cama 4/7dias
 Orden 1/7dias
 Ropa 1/7dias
+
+
+## BUGS
+Cuando presiono varias veces el boton play el timer avanza 2 veces por segundo
