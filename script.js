@@ -9,6 +9,8 @@ const acti=document.querySelector("#acti");
 const contadorDiv=document.querySelector("#contadorDiv");
 const alarma=document.querySelector("#alarma");
 const skip=document.querySelector("#skip");
+const btnConfigure=document.querySelector("#btnConfiguration");
+const configure=document.querySelector("#configuration");
 
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
@@ -16,8 +18,8 @@ let finalTimer="00:00";
 let nose;
 let contar=1;
 
-
 body.style.background="rgba(183, 23, 23, 0.925)";
+
 //Event listeners
 botonesTimers.addEventListener("click",(e)=>{
     pauseTimer();
@@ -56,6 +58,13 @@ skip.addEventListener("click",(e)=>{
     cambioTimer();
     //timeSet();
     pauseTimer();
+})
+
+btnConfigure.addEventListener("click",(e)=>{
+    if (configure.style.display=="block"){
+        configure.style.display="none";
+    }
+    else{configure.style.display="block";}
 })
 
 //Funciones
