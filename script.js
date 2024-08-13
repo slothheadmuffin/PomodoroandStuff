@@ -8,12 +8,13 @@ const contador=document.querySelector("#contador")
 const acti=document.querySelector("#acti");
 const contadorDiv=document.querySelector("#contadorDiv");
 const alarma=document.querySelector("#alarma");
+const skip=document.querySelector("#skip");
 
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
 let finalTimer="00:00";
 let nose;
-let contar=contador.textContent;
+let contar=1;
 
 
 body.style.background="rgba(183, 23, 23, 0.925)";
@@ -31,7 +32,7 @@ botonesTimers.addEventListener("click",(e)=>{
                 longBreak();
             break;
     }
-    cambioTimer();
+    timeSet();
     play.textContent='Play'; 
 })
 
@@ -46,9 +47,15 @@ play.addEventListener("click",(e)=>{
     }
 })
 
-contadorDiv.addEventListener("click",(e)=>{
+contador.addEventListener("click",(e)=>{
     contar=1;
     contador.textContent=contar;
+})
+
+skip.addEventListener("click",(e)=>{
+    cambioTimer();
+    //timeSet();
+    pauseTimer();
 })
 
 //Funciones
@@ -56,21 +63,8 @@ function timerWork() {
     if (segundos==0){
         if (minutos==0){
             alarma.play();
-            setTimeout(3000);
             //Si esta en rojo cambia a azul
-            if (body.style.background=="rgba(183, 23, 23, 0.925)"){
-                if (contar%4===0){
-                    longBreak();
-                }
-                else{shortBreak();}
-            }
-            else{
-                contar++;
-                work();
-                contador.textContent=contar;
-                
-            }
-            play.textContent='Play';
+            cambioTimer();
             return;
         }
         else if (minutos !=0){
@@ -90,29 +84,44 @@ function pauseTimer() {
 }
 
 function work(){
-    minutoSpan.textContent='00';
-    segundoSpan.textContent='09';
-    cambioTimer();
+    minutoSpan.textContent='25';
+    segundoSpan.textContent='00';
+    timeSet();
     body.style.background="rgba(183, 23, 23, 0.925)";
 }
 
 function shortBreak(){
-    minutoSpan.textContent='00';
-    segundoSpan.textContent='08';
-    cambioTimer();
+    minutoSpan.textContent='05';
+    segundoSpan.textContent='00';
+    timeSet();
     body.style.background="#17A3D7";
 }
 
 function longBreak(){
-    minutoSpan.textContent='00';
-    segundoSpan.textContent='07';
-    cambioTimer();
+    minutoSpan.textContent='15';
+    segundoSpan.textContent='00';
+    timeSet();
     body.style.background="#17A3D7";
 }
 
-function cambioTimer(){
+function timeSet(){
     minutos=minutoSpan.textContent;
     segundos=segundoSpan.textContent;
     timer.textContent = `${minutos.toString().padStart(2, "0")}:${segundos.toString().padStart(2, "0")}`;
    
+}
+
+function cambioTimer(){
+    if (body.style.background=="rgba(183, 23, 23, 0.925)"){//color rojo
+        if (contar%4===0){
+            longBreak();
+        }
+        else{shortBreak();}
+    }
+    else{
+        contar++;
+        contador.textContent=contar;
+        work();
+    }
+    play.textContent='Play';
 }
