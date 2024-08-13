@@ -3,7 +3,7 @@ Voy a hacer un timer y otras cosas
 
 # Timer
 Posibilidad de distintas configuraciones de timers, por ejemplo:
-## Trabajo regular
+## Trabajo regular (done)
 Timer usando técnica pomodoro
 osea 3 timers
 actividad:25 minutos
@@ -15,16 +15,16 @@ Workout:45sec
 Descanso corto: 15 sec
 Descanso largo: 1min
 
-## Funcionamiento del timer
-Boton para pausar/iniciar timer
+## Funcionamiento del timer (done)
+Boton para pausar/iniciar timer (done)
 
-Boton para darle skip al timer
+Boton para darle skip al timer (done)
 
-Cada que se termina un timer de actividad (A) automaticamente va al de descanso corto
+Cada que se termina un timer de actividad (A) automaticamente va al de descanso corto (done)
 
-cada que termina un timer de descanso corto (DC) regresa a W
+cada que termina un timer de descanso corto (DC) regresa a W (done)
 
-Despues del 4to timer W entra descanso largo (DL) y se reinicia el conteo
+Cada 4to timer W entra descanso largo (DL) (done)
 
 # ToDo List
 ## Tipo de actividad
@@ -48,4 +48,3 @@ Ropa 1/7dias
 
 
 ## BUGS
-Cuando presiono varias veces el boton play el timer avanza 2 veces por segundo
