@@ -5,28 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My very own Productivity App</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/66164ee1b8.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <button id="configuration">Configuration</button>
     </header>
     <main>
-        <div  id="botonesTimers">
-            <button class="timers" id="work">Actividad</button>
-            <button class="timers" id="descansoCorto">Descanso corto</button>
-            <button class="timers" id="descansoLargo">Descanso largo</button>
-        </div>
-        
-        <div id="timer">
-            <span id="minutos" >00</span>:<span id="segundos">09</span>
-            <audio id="alarma">
-                <source type="audio/wav" src="clock-alarm-8761.mp3">
-            </audio>
-        </div>
-        <div id="contadorDiv">
-            <p><span>#</span><span id="contador">1</span></p>
-            <p id="acti">work</p>
-            <button id="play" class="timers">Play</button>
+        <div id="areaTimer">
+            <div  id="botonesTimers">
+                <button class="timers" id="work">Actividad</button>
+                <button class="timers" id="descansoCorto">Descanso corto</button>
+                <button class="timers" id="descansoLargo">Descanso largo</button>
+            </div>
+            
+            <div id="timer">
+                <span id="minutos" >25</span>:<span id="segundos">00</span>
+                <audio id="alarma">
+                    <source type="audio/wav" src="clock-alarm-8761.mp3">
+                </audio>
+            </div>
+            <div id="contadorDiv">
+                <p><span>#</span><span id="contador">1</span></p>
+                <p id="acti">work</p>
+                <button id="play" class="timers">Play</button>
+                <button id="skip"><i class="fa-solid fa-forward"></i></button>
+            </div>
         </div>
     </main>
     <footer>
