@@ -1,23 +1,36 @@
-const timer=document.querySelector("#timer");
-const minutoSpan=document.querySelector("#minutos");
-const segundoSpan=document.querySelector("#segundos");
-const play=document.querySelector("#play");
-const botonesTimers=document.querySelector("#botonesTimers");
+//const de elementos
 const body=document.querySelector("body");
-const contador=document.querySelector("#contador")
-const acti=document.querySelector("#acti");
+const main=document.querySelector("main");
+//const de divs
+const configure=document.querySelector("#configuration");
 const contadorDiv=document.querySelector("#contadorDiv");
-const alarma=document.querySelector("#alarma");
+const timer=document.querySelector("#timer");
+const botonesTimers=document.querySelector("#botonesTimers");
+//const de botones
 const skip=document.querySelector("#skip");
 const btnConfigure=document.querySelector("#btnConfiguration");
-const configure=document.querySelector("#configuration");
+const play=document.querySelector("#play");
+const settingsSubmit=document.querySelector("#settingSubmit");
+//const de texto
+const contador=document.querySelector("#contador");
+const acti=document.querySelector("#acti");
+const minutoSpan=document.querySelector("#minutos");
+const segundoSpan=document.querySelector("#segundos");
+//const otros
+const alarma=document.querySelector("#alarma");
+const inputActi=document.querySelector("#inputActividad");
+const inputDC=document.querySelector("#inputDescansoCorto");
+const inputDL=document.querySelector("#inputDescansoLargo");
+
 
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
 let finalTimer="00:00";
 let nose;
 let contar=1;
-
+let inputActiText=inputActi.textContent;
+let inputDCText=inputDC.textContent;
+let inputDLText=inputDL.textContent;
 body.style.background="rgba(183, 23, 23, 0.925)";
 
 //Event listeners
@@ -56,7 +69,6 @@ contador.addEventListener("click",(e)=>{
 
 skip.addEventListener("click",(e)=>{
     cambioTimer();
-    //timeSet();
     pauseTimer();
 })
 

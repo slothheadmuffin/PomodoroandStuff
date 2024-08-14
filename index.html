@@ -13,7 +13,26 @@
     </header>
     <main>
         <div id="configuration">
-            <div>Settings</div>
+            <div>
+                <p class="settingsWindow">Settings</p>
+                <div id="cambiarTrabajo">
+                    <div>
+                        <label for="inputActividad">Actividad</label><br>
+                        <input class="inputsTiempo" type="number" id="inputActividad" min="0" step="1">
+                    </div>
+                    
+                    <div>
+                        <label for="inputDescansoCorto">Descanso corto</label><br>      
+                        <input class="inputsTiempo" type="number" id="inputDescansoCorto" min="0" step="1">
+                    </div>
+                    <div>
+                        <label for="inputDescansoLargo">Descanso Largo</label><br>
+                        <input class="inputsTiempo" type="number" id="inputDescansoLargo" min="0" step="1">
+                    </div>
+                   
+                </div>
+                <button id="settingSubmit">Submit</button>
+            </div>
         </div>
         <div id="areaTimer">
             <div  id="botonesTimers">
