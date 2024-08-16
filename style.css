@@ -51,6 +51,7 @@ p{
 #configuration{
     display:none;
     position: absolute;
+    color: black;
     height: 500px;
     width: 350px;
     background-color: aliceblue;
