@@ -20,10 +20,14 @@ const minutoSpan=document.querySelector("#minutos");
 const segundoSpan=document.querySelector("#segundos");
 //const otros
 const alarma=document.querySelector("#alarma");
+const timerMenu=document.querySelector("#timerMenu");
 
 let workMinutes=25;
 let descansoCortoMinutes=5;
 let descansoLargoMinutes=15;
+let workSeconds=0;
+let descansoCortoSeconds=0;
+let descansoLargoSeconds=0;
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
 let finalTimer="00:00";
@@ -32,6 +36,7 @@ let contar=1;
 let inputText='';
 body.style.background="rgba(183, 23, 23, 0.925)";
 alarma.volume=0.2;
+
 //Event listeners
 botonesTimers.addEventListener("click",(e)=>{
     pauseTimer();
@@ -85,9 +90,16 @@ cambiarTrabajo.addEventListener("keyup",(e)=>{
         inputText=999;
         e.target.value=inputText;
     }
-    if (e.target.id=='inputActividad'){workMinutes=inputText;}
-    else if(e.target.id=='inputDescansoCorto'){descansoCortoMinutes=inputText;}
-    else if(e.target.id=='inputDescansoLargo'){descansoLargoMinutes=inputText;}
+    if (timerMenu.value=="minutes"){
+        if (e.target.id=='inputActividad'){workMinutes=inputText;}
+        else if(e.target.id=='inputDescansoCorto'){descansoCortoMinutes=inputText;}
+        else if(e.target.id=='inputDescansoLargo'){descansoLargoMinutes=inputText;}
+    }
+    else {
+        if (e.target.id=='inputActividad'){workSeconds=inputText;}
+        else if(e.target.id=='inputDescansoCorto'){descansoCortoSeconds=inputText;}
+        else if(e.target.id=='inputDescansoLargo'){descansoLargoSeconds=inputText;}
+    }    
 })
 
 settingsSubmit.addEventListener("click",(e)=>{
@@ -99,8 +111,6 @@ settingsSubmit.addEventListener("click",(e)=>{
     }
     else{longBreak();}
    
-    /*descansoCortoMinutes=;
-    descansoLargoMinutes=;*/
 })
 //Funciones
 function timerWork() {
@@ -130,21 +140,21 @@ function pauseTimer() {
 
 function work(){
     minutoSpan.textContent=workMinutes;
-    segundoSpan.textContent='00';
+    segundoSpan.textContent=workSeconds;
     timeSet();
     body.style.background="rgba(183, 23, 23, 0.925)";
 }
 
 function shortBreak(){
     minutoSpan.textContent=descansoCortoMinutes;
-    segundoSpan.textContent='00';
+    segundoSpan.textContent=descansoCortoSeconds;
     timeSet();
     body.style.background="#17D7C6";
 }
 
 function longBreak(){
     minutoSpan.textContent=descansoLargoMinutes;
-    segundoSpan.textContent='00';
+    segundoSpan.textContent=descansoLargoSeconds;
     timeSet();
     body.style.background="#17A3D7";
 }
