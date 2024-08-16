@@ -15,23 +15,21 @@
         <div id="configuration">
             <div>
                 <p class="settingsWindow">Settings</p>
+                <div style="display: flex; justify-content: space-between;">
+                    <label for="inputActividad">Actividad</label>
+                    <label for="inputDescansoCorto">Descanso corto</label>
+                    <label for="inputDescansoLargo">Descanso Largo</label>      
+                </div>
+                
                 <div id="cambiarTrabajo">
-                    <div>
-                        <label for="inputActividad">Actividad</label><br>
-                        <input class="inputsTiempo" type="number" id="inputActividad" min="0" step="1">
-                    </div>
-                    
-                    <div>
-                        <label for="inputDescansoCorto">Descanso corto</label><br>      
-                        <input class="inputsTiempo" type="number" id="inputDescansoCorto" min="0" step="1">
-                    </div>
-                    <div>
-                        <label for="inputDescansoLargo">Descanso Largo</label><br>
-                        <input class="inputsTiempo" type="number" id="inputDescansoLargo" min="0" step="1">
-                    </div>
-                   
+                    <input class="inputsTiempo" type="number" id="inputActividad" min="0" step="1">
+                    <input class="inputsTiempo" type="number" id="inputDescansoCorto" min="0" step="1">
+                    <input class="inputsTiempo" type="number" id="inputDescansoLargo" min="0" step="1">        
                 </div>
                 <button id="settingSubmit">Submit</button>
+                <audio id="alarma" controls>
+                    <source type="audio/wav" src="clock-alarm-8761.mp3">
+                </audio>
             </div>
         </div>
         <div id="areaTimer">
@@ -43,9 +41,6 @@
             
             <div id="timer">
                 <span id="minutos" >25</span>:<span id="segundos">00</span>
-                <audio id="alarma">
-                    <source type="audio/wav" src="clock-alarm-8761.mp3">
-                </audio>
             </div>
             <div id="contadorDiv">
                 <p><span>#</span><span id="contador">1</span></p>
