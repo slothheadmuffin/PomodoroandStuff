@@ -2,19 +2,14 @@
 Voy a hacer un timer y otras cosas
 
 
-## Timer
-Posibilidad de distintas configuraciones de timers, por ejemplo:
+## Timer (done)
+Posibilidad de distintas configuraciones de timers tanto minutos como segundos modificables, por ejemplo:
 ### Trabajo regular (done)
 Timer usando técnica pomodoro
 osea 3 timers
 actividad:25 minutos
 Descanso corto: 5 minutos
 Descanso largo:15 minutos
-
-### Modo ejercicio
-Workout:45sec
-Descanso corto: 15 sec
-Descanso largo: 1min
 
 ### Funcionamiento del timer (done)
 Boton para pausar/iniciar timer (done)
@@ -30,6 +25,7 @@ Cada 4to timer W entra descanso largo (DL) (done)
 ## Boton settings
 ### Timer modificable (done)
 Se pueden modificar los tres timers (actividad y dos descansos)
+en minutos y en segundos
 ### Sonido de alarma (done)
 Se bajo volumen base a 20% y se puede modificar el volumen
 ### Cambiar colores
