@@ -1,11 +1,13 @@
 //const de elementos
 const body=document.querySelector("body");
 const main=document.querySelector("main");
+const inputGeneral=document.querySelectorAll("input");
 //const de divs
 const configure=document.querySelector("#configuration");
 const contadorDiv=document.querySelector("#contadorDiv");
 const timer=document.querySelector("#timer");
 const botonesTimers=document.querySelector("#botonesTimers");
+const cambiarTrabajo=document.querySelector("#cambiarTrabajo");
 //const de botones
 const skip=document.querySelector("#skip");
 const btnConfigure=document.querySelector("#btnConfiguration");
@@ -18,21 +20,18 @@ const minutoSpan=document.querySelector("#minutos");
 const segundoSpan=document.querySelector("#segundos");
 //const otros
 const alarma=document.querySelector("#alarma");
-const inputActi=document.querySelector("#inputActividad");
-const inputDC=document.querySelector("#inputDescansoCorto");
-const inputDL=document.querySelector("#inputDescansoLargo");
 
-
+let workMinutes=25;
+let descansoCortoMinutes=5;
+let descansoLargoMinutes=15;
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
 let finalTimer="00:00";
 let nose;
 let contar=1;
-let inputActiText=inputActi.textContent;
-let inputDCText=inputDC.textContent;
-let inputDLText=inputDL.textContent;
+let inputText='';
 body.style.background="rgba(183, 23, 23, 0.925)";
-
+alarma.volume=0.2;
 //Event listeners
 botonesTimers.addEventListener("click",(e)=>{
     pauseTimer();
@@ -48,7 +47,6 @@ botonesTimers.addEventListener("click",(e)=>{
             break;
     }
     timeSet();
-    play.textContent='Play'; 
 })
 
 play.addEventListener("click",(e)=>{
@@ -58,7 +56,6 @@ play.addEventListener("click",(e)=>{
     }
     else{
         pauseTimer();
-        play.textContent='Play'; 
     }
 })
 
@@ -76,13 +73,39 @@ btnConfigure.addEventListener("click",(e)=>{
     if (configure.style.display=="block"){
         configure.style.display="none";
     }
-    else{configure.style.display="block";}
+    else{
+        configure.style.display="block";
+    }
 })
 
+cambiarTrabajo.addEventListener("keyup",(e)=>{
+    inputText=e.target.value;
+   
+    if (inputText>999){
+        inputText=999;
+        e.target.value=inputText;
+    }
+    if (e.target.id=='inputActividad'){workMinutes=inputText;}
+    else if(e.target.id=='inputDescansoCorto'){descansoCortoMinutes=inputText;}
+    else if(e.target.id=='inputDescansoLargo'){descansoLargoMinutes=inputText;}
+})
+
+settingsSubmit.addEventListener("click",(e)=>{
+    if (body.style.background=="rgba(183, 23, 23, 0.925)"){//color rojo
+        work();
+    }
+    else if (body.style.background=="rgb(23, 215, 198)"){
+        shortBreak();
+    }
+    else{longBreak();}
+   
+    /*descansoCortoMinutes=;
+    descansoLargoMinutes=;*/
+})
 //Funciones
 function timerWork() {
     if (segundos==0){
-        if (minutos==0){
+        if (minutos==0){            
             alarma.play();
             //Si esta en rojo cambia a azul
             cambioTimer();
@@ -102,24 +125,25 @@ function timerWork() {
 function pauseTimer() {
     finalTimer = timer.textContent;
     clearTimeout(nose);
+    play.textContent='Play'; 
 }
 
 function work(){
-    minutoSpan.textContent='25';
+    minutoSpan.textContent=workMinutes;
     segundoSpan.textContent='00';
     timeSet();
     body.style.background="rgba(183, 23, 23, 0.925)";
 }
 
 function shortBreak(){
-    minutoSpan.textContent='05';
+    minutoSpan.textContent=descansoCortoMinutes;
     segundoSpan.textContent='00';
     timeSet();
-    body.style.background="#17A3D7";
+    body.style.background="#17D7C6";
 }
 
 function longBreak(){
-    minutoSpan.textContent='15';
+    minutoSpan.textContent=descansoLargoMinutes;
     segundoSpan.textContent='00';
     timeSet();
     body.style.background="#17A3D7";
