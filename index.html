@@ -13,8 +13,8 @@
     </header>
     <main>
         <div id="configuration">
-            <div>
-                <p class="settingsWindow">Settings</p>
+            <p class="settingsWindow">Settings</p>
+            <div id="modificarTimerDiv">
                 <label for="timerMenu">Modificar Timer</label>
                 <select name="timerMenu" id="timerMenu">
                     <option value="minutes">Minutos</option>
@@ -32,10 +32,17 @@
                     <input class="inputsTiempo" type="number" id="inputDescansoLargo" min="0" step="1">        
                 </div>
                 <button id="settingSubmit">Submit</button>
-                <audio id="alarma" controls>
-                    <source type="audio/wav" src="clock-alarm-8761.mp3">
-                </audio>
             </div>
+                      
+            <audio id="alarma" controls>
+                <source type="audio/wav" src="clock-alarm-8761.mp3">
+            </audio>
+            <div id="cambiarColor">
+                <input type="color" name="colorActividad" id="colorActividad" class="colores" value="#b71717">
+                <input type="color" name="colorDescansoCorto" id="colorDescansoCorto" class="colores" value="#17D7C6">
+                <input type="color" name="colorDescansoLargo" id="colorDescansoLargo" class="colores" value="#17a3d7">
+            </div>
+            <button id="btnCambiarColor">Cambiar</button>
         </div>
         <div id="areaTimer">
             <div  id="botonesTimers">
