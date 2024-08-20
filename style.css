@@ -31,6 +31,12 @@ p{
 .settingsWindow{
     color: black;
 }
+
+.colores{
+    /*width: 50px;
+    height: 30px;*/
+    border: 1px solid black;
+}
 /*IDs*/
 #timer{
     font-size: 72px;
@@ -59,13 +65,15 @@ p{
     padding: 10px;
 }
 
-/*#labelsInput,#inputs{
-    display: flex;
-    justify-content: space-between;
-}*/
 #cambiarTrabajo{
     display: flex;
     justify-content: space-between;
     flex-wrap: nowrap;
 }
+#cambiarColor{
+    display: flex;
+    flex-direction: row;
+    justify-content:end;
+}
+
 /*Varias cosas*/
