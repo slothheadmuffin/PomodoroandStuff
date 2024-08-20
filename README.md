@@ -22,13 +22,13 @@ cada que termina un timer de descanso corto (DC) regresa a W (done)
 
 Cada 4to timer W entra descanso largo (DL) (done)
 
-## Boton settings
+## Boton settings (done)
 ### Timer modificable (done)
 Se pueden modificar los tres timers (actividad y dos descansos)
 en minutos y en segundos
 ### Sonido de alarma (done)
 Se bajo volumen base a 20% y se puede modificar el volumen
-### Cambiar colores
+### Cambiar colores (done)
 (el nombre lo indica)
 
 ## ToDo List
@@ -53,3 +53,4 @@ Ropa 1/7dias
 
 
 # BUGS
+No es bug pero al modificar el timer no funcionan las flechitas
