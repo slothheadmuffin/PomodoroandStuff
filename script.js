@@ -1,18 +1,20 @@
 //const de elementos
 const body=document.querySelector("body");
 const main=document.querySelector("main");
-const inputGeneral=document.querySelectorAll("input");
+//const inputGeneral=document.querySelectorAll("input");
 //const de divs
 const configure=document.querySelector("#configuration");
 const contadorDiv=document.querySelector("#contadorDiv");
 const timer=document.querySelector("#timer");
 const botonesTimers=document.querySelector("#botonesTimers");
 const cambiarTrabajo=document.querySelector("#cambiarTrabajo");
+const cambiarColor=document.querySelector("#cambiarColor")
 //const de botones
 const skip=document.querySelector("#skip");
 const btnConfigure=document.querySelector("#btnConfiguration");
 const play=document.querySelector("#play");
 const settingsSubmit=document.querySelector("#settingSubmit");
+const btnCambiarColor=document.querySelector("#btnCambiarColor");
 //const de texto
 const contador=document.querySelector("#contador");
 const acti=document.querySelector("#acti");
@@ -21,6 +23,9 @@ const segundoSpan=document.querySelector("#segundos");
 //const otros
 const alarma=document.querySelector("#alarma");
 const timerMenu=document.querySelector("#timerMenu");
+const colorActividad=document.querySelector("#colorActividad");
+const colorDescansoCorto=document.querySelector("#colorDescansoCorto");
+const colorDescansoLargo=document.querySelector("#colorDescansoLargo");
 
 let workMinutes=25;
 let descansoCortoMinutes=5;
@@ -30,11 +35,17 @@ let descansoCortoSeconds=0;
 let descansoLargoSeconds=0;
 let segundos=segundoSpan.textContent;
 let minutos=minutoSpan.textContent;
+
 let finalTimer="00:00";
 let nose;
 let contar=1;
 let inputText='';
-body.style.background="rgba(183, 23, 23, 0.925)";
+
+let newColor='';
+let colorActi="rgb(183, 23, 23)";
+let colorShortBreak="#17D7C6";
+let colorLongBreak="#17A3D7";
+body.style.background=colorActi;
 alarma.volume=0.2;
 
 //Event listeners
@@ -83,6 +94,19 @@ btnConfigure.addEventListener("click",(e)=>{
     }
 })
 
+btnCambiarColor.addEventListener("click",(e)=>{   
+    if (body.style.background==colorActi){
+        changeColor();
+        body.style.background=colorActi;
+    }
+    else if (body.style.background==colorShortBreak){
+        changeColor();
+        body.style.background=colorShortBreak;
+    }
+    else{changeColor();
+        body.style.background=colorLongBreak;}
+})
+
 cambiarTrabajo.addEventListener("keyup",(e)=>{
     inputText=e.target.value;
    
@@ -103,7 +127,7 @@ cambiarTrabajo.addEventListener("keyup",(e)=>{
 })
 
 settingsSubmit.addEventListener("click",(e)=>{
-    if (body.style.background=="rgba(183, 23, 23, 0.925)"){//color rojo
+    if (body.style.background=="rgb(183, 23, 23)"){//color rojo
         work();
     }
     else if (body.style.background=="rgb(23, 215, 198)"){
@@ -112,6 +136,7 @@ settingsSubmit.addEventListener("click",(e)=>{
     else{longBreak();}
    
 })
+
 //Funciones
 function timerWork() {
     if (segundos==0){
@@ -142,21 +167,22 @@ function work(){
     minutoSpan.textContent=workMinutes;
     segundoSpan.textContent=workSeconds;
     timeSet();
-    body.style.background="rgba(183, 23, 23, 0.925)";
+    body.style.background=colorActi;
+    
 }
 
 function shortBreak(){
     minutoSpan.textContent=descansoCortoMinutes;
     segundoSpan.textContent=descansoCortoSeconds;
     timeSet();
-    body.style.background="#17D7C6";
+    body.style.background=colorShortBreak;
 }
 
 function longBreak(){
     minutoSpan.textContent=descansoLargoMinutes;
     segundoSpan.textContent=descansoLargoSeconds;
     timeSet();
-    body.style.background="#17A3D7";
+    body.style.background=colorLongBreak;
 }
 
 function timeSet(){
@@ -167,7 +193,7 @@ function timeSet(){
 }
 
 function cambioTimer(){
-    if (body.style.background=="rgba(183, 23, 23, 0.925)"){//color rojo
+    if (body.style.background==colorActi){//color rojo
         if (contar%4===0){
             longBreak();
         }
@@ -179,4 +205,28 @@ function cambioTimer(){
         work();
     }
     play.textContent='Play';
+}
+
+function changeColor (){
+    colorActi=colorActividad.value;
+    colorShortBreak=colorDescansoCorto.value;
+    colorLongBreak=colorDescansoLargo.value;
+   // conversion de colores a rgb
+   colorActi=hexaToRgb(colorActi);
+   colorShortBreak=hexaToRgb(colorShortBreak);
+   colorLongBreak=hexaToRgb(colorLongBreak);
+}
+
+
+function hexaToRgb(hex) {
+    // Elimina el símbolo "#" si está presente
+    hex = hex.replace("#", "");
+
+    // Divide el valor hexadecimal en componentes rojo, verde y azul
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+
+    // Devuelve el resultado en formato RGB
+    return `rgb(${r}, ${g}, ${b})`;
 }
