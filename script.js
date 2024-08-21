@@ -8,7 +8,9 @@ const contadorDiv=document.querySelector("#contadorDiv");
 const timer=document.querySelector("#timer");
 const botonesTimers=document.querySelector("#botonesTimers");
 const cambiarTrabajo=document.querySelector("#cambiarTrabajo");
-const cambiarColor=document.querySelector("#cambiarColor")
+const cambiarColor=document.querySelector("#cambiarColor");
+const actividadesDiv=document.querySelector("#actividadesDiv");
+const actividadNueva=document.querySelector("#actividadNueva");
 //const de botones
 const skip=document.querySelector("#skip");
 const btnConfigure=document.querySelector("#btnConfiguration");
@@ -41,7 +43,6 @@ let nose;
 let contar=1;
 let inputText='';
 
-let newColor='';
 let colorActi="rgb(183, 23, 23)";
 let colorShortBreak="#17D7C6";
 let colorLongBreak="#17A3D7";
@@ -137,6 +138,12 @@ settingsSubmit.addEventListener("click",(e)=>{
    
 })
 
+actividadNueva.addEventListener("click",(e)=>{
+    editarActivdad();
+    /*cancelButton.addEventListener("click",(e)=>{
+        actividadesDiv.removeChild(divsActividadEditor);
+    })*/
+})
 //Funciones
 function timerWork() {
     if (segundos==0){
@@ -229,4 +236,86 @@ function hexaToRgb(hex) {
 
     // Devuelve el resultado en formato RGB
     return `rgb(${r}, ${g}, ${b})`;
+}
+
+function editarActivdad(){
+    let i=0;
+   
+    const divsActividades=document.createElement("div");
+    const actividadInput=document.createElement("input");
+    const cancelButton=document.createElement("button");
+    const saveButton=document.createElement("button");
+    const deleteButton=document.createElement("button");
+    const editarButton=document.createElement("button");
+    const nombreActividad=document.createElement("span");
+    const ciclosNecesarios=document.createElement("span");
+    const ciclosNecesariosInput=document.createElement("input");
+
+
+    actividadesDiv.appendChild(divsActividades);
+    divsActividades.appendChild(actividadInput);
+    divsActividades.appendChild(cancelButton);
+    divsActividades.appendChild(saveButton);
+    divsActividades.appendChild(deleteButton);
+    divsActividades.appendChild(nombreActividad);
+    divsActividades.appendChild(ciclosNecesarios);
+    divsActividades.appendChild(ciclosNecesariosInput);
+
+    divsActividades.classList.add("divsActividadesCreados");
+    cancelButton.textContent="Cancelar";
+    saveButton.textContent="Guardar";
+    deleteButton.textContent="Eliminar";
+    editarButton.textContent="Editar";
+
+    let actividadText=nombreActividad.textContent;
+    let ciclosNecesariosText=ciclosNecesarios.textContent;
+
+    cancelButton.addEventListener("click",(e)=>{
+        if (nombreActividad.textContent!=''){
+            nombreActividad.textContent=actividadText;
+            ciclosNecesarios.textContent=`${i}/${ciclosNecesariosText}`;
+            divsActividades.removeChild(actividadInput);
+            divsActividades.removeChild(cancelButton);
+            divsActividades.removeChild(saveButton);
+            divsActividades.removeChild(deleteButton);
+            divsActividades.removeChild(ciclosNecesariosInput);
+            divsActividades.appendChild(editarButton);
+            nombreActividad.style.display="block";
+        ciclosNecesarios.style.display="block";
+        }
+        else {actividadesDiv.removeChild(divsActividades);}
+    })
+
+    saveButton.addEventListener("click",(e)=>{
+        actividadText=actividadInput.value;
+        nombreActividad.textContent=actividadText;
+        divsActividades.removeChild(actividadInput);
+        divsActividades.removeChild(cancelButton);
+        divsActividades.removeChild(saveButton);
+        divsActividades.removeChild(deleteButton);
+        divsActividades.appendChild(editarButton);
+       ciclosNecesariosText=ciclosNecesariosInput.value;
+        ciclosNecesarios.textContent=`${i}/${ciclosNecesariosText}`;
+        divsActividades.removeChild(ciclosNecesariosInput);
+        nombreActividad.style.display="block";
+        ciclosNecesarios.style.display="block";
+    })
+
+    deleteButton.addEventListener("click",(e)=>{
+        actividadesDiv.removeChild(divsActividades);
+    })
+
+    editarButton.addEventListener("click",(e)=>{
+        divsActividades.appendChild(actividadInput);
+        divsActividades.appendChild(cancelButton);
+        divsActividades.appendChild(saveButton);
+        divsActividades.appendChild(deleteButton);
+        divsActividades.removeChild(editarButton);
+        divsActividades.appendChild(ciclosNecesariosInput);
+
+        actividadInput.value=nombreActividad.textContent;
+        actividadText=nombreActividad.textContent;
+        nombreActividad.style.display="none";
+        ciclosNecesarios.style.display="none";
+    })
 }
