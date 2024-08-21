@@ -37,6 +37,14 @@ p{
     height: 30px;*/
     border: 1px solid black;
 }
+
+.divsActividadesCreados{
+    width: 600px;
+    height: 60px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-around;
+}
 /*IDs*/
 #timer{
     font-size: 72px;
@@ -76,4 +84,14 @@ p{
     justify-content:end;
 }
 
+#actividadNueva{
+    border:1px solid black;
+    padding: 20px;
+}
+
+#actividadesTitulo{
+    border-bottom: 2px solid white;
+    margin: 10px;
+    
+}
 /*Varias cosas*/
