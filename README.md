@@ -32,9 +32,10 @@ Se bajo volumen base a 20% y se puede modificar el volumen
 (el nombre lo indica)
 
 ## ToDo List
-### Tipo de actividad
-Quiero que puedas escribir el tipo de actividad que se desea hacer, (estudiar, trabajar, etc.)
-Puedes escoger cuantos ciclos de A planeas usar para el dia y/o semana
+### Tipo de actividad (done)
+Quiero que puedas escribir el tipo de actividad que se desea hacer, (estudiar, trabajar, etc.) (done)
+
+Puedes escoger cuantos ciclos de A planeas usar para el dia y/o semana (done)
 Por ejemplo necesito 8 ciclos diarios para trabajar y 4 ciclos diarios para estudiar
 
 ### TODO list
@@ -53,4 +54,5 @@ Ropa 1/7dias
 
 
 # BUGS
-No es bug pero al modificar el timer no funcionan las flechitas
+No es bug pero al modificar el timer no funcionan las flechitas (no bug)
+falta que el todolist se actualice cada que avanza un ciclo (no bug)
