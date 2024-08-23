@@ -1,7 +1,6 @@
 //const de elementos
 const body=document.querySelector("body");
 const main=document.querySelector("main");
-//const inputGeneral=document.querySelectorAll("input");
 //const de divs
 const configure=document.querySelector("#configuration");
 const contadorDiv=document.querySelector("#contadorDiv");
@@ -11,6 +10,7 @@ const cambiarTrabajo=document.querySelector("#cambiarTrabajo");
 const cambiarColor=document.querySelector("#cambiarColor");
 const actividadesDiv=document.querySelector("#actividadesDiv");
 const actividadNueva=document.querySelector("#actividadNueva");
+const actividadesEditor=document.querySelector("#editorDivActividad");
 //const de botones
 const skip=document.querySelector("#skip");
 const btnConfigure=document.querySelector("#btnConfiguration");
@@ -28,6 +28,8 @@ const timerMenu=document.querySelector("#timerMenu");
 const colorActividad=document.querySelector("#colorActividad");
 const colorDescansoCorto=document.querySelector("#colorDescansoCorto");
 const colorDescansoLargo=document.querySelector("#colorDescansoLargo");
+const inputTask=document.querySelector("#actividadInput");
+const inputTaskCiclo=document.querySelector("#ciclosNecesariosInput");
 
 let workMinutes=25;
 let descansoCortoMinutes=5;
@@ -42,12 +44,21 @@ let finalTimer="00:00";
 let nose;
 let contar=1;
 let inputText='';
+let i=0;
 
 let colorActi="rgb(183, 23, 23)";
 let colorShortBreak="#17D7C6";
 let colorLongBreak="#17A3D7";
 body.style.background=colorActi;
 alarma.volume=0.2;
+
+let nombreActividadText='';
+let ciclosNecesariosText='';
+let ciclosTotales=0;
+
+let ciclosNecesarios; //variable global del contador de ciclos
+//Actividades
+
 
 //Event listeners
 botonesTimers.addEventListener("click",(e)=>{
@@ -108,7 +119,7 @@ btnCambiarColor.addEventListener("click",(e)=>{
         body.style.background=colorLongBreak;}
 })
 
-cambiarTrabajo.addEventListener("keyup",(e)=>{
+cambiarTrabajo.addEventListener("change",(e)=>{
     inputText=e.target.value;
    
     if (inputText>999){
@@ -124,8 +135,9 @@ cambiarTrabajo.addEventListener("keyup",(e)=>{
         if (e.target.id=='inputActividad'){workSeconds=inputText;}
         else if(e.target.id=='inputDescansoCorto'){descansoCortoSeconds=inputText;}
         else if(e.target.id=='inputDescansoLargo'){descansoLargoSeconds=inputText;}
-    }    
+    }  
 })
+
 
 settingsSubmit.addEventListener("click",(e)=>{
     if (body.style.background=="rgb(183, 23, 23)"){//color rojo
@@ -139,10 +151,34 @@ settingsSubmit.addEventListener("click",(e)=>{
 })
 
 actividadNueva.addEventListener("click",(e)=>{
-    editarActivdad();
-    /*cancelButton.addEventListener("click",(e)=>{
-        actividadesDiv.removeChild(divsActividadEditor);
-    })*/
+    actividadesEditor.style.display="flex";
+})
+
+actividadesEditor.addEventListener("click",(e)=>{
+    
+    switch (e.target.id){
+        case 'cancelButtonActividades':
+            actividadesEditor.style.display="none";
+            inputTask.value='';
+            inputTaskCiclo.value='';
+            if (nombreActividadText!='' && ciclosNecesariosText!=''){crearActivdad().style.display="flex";}
+            
+            break;
+        case 'saveButtonActividades':
+            nombreActividadText=inputTask.value;
+            ciclosNecesariosText=inputTaskCiclo.value;
+            crearActivdad();
+            inputTask.value='';
+            inputTaskCiclo.value='';
+            actividadesEditor.style.display="none";
+            break;
+        case 'deleteButtonActividades':
+            actividadesDiv.removeChild(crearActivdad());
+            limpiarvaloresActividades();    
+            actividadesEditor.style.display="none";
+            break;
+    }
+    
 })
 //Funciones
 function timerWork() {
@@ -201,6 +237,8 @@ function timeSet(){
 
 function cambioTimer(){
     if (body.style.background==colorActi){//color rojo
+        ciclosTotales=contadorActividades(ciclosNecesariosText);
+        if (ciclosNecesarios!==undefined){ciclosNecesarios.textContent=`${ciclosTotales}/${ciclosNecesariosText}`;}
         if (contar%4===0){
             longBreak();
         }
@@ -209,6 +247,7 @@ function cambioTimer(){
     else{
         contar++;
         contador.textContent=contar;
+        
         work();
     }
     play.textContent='Play';
@@ -224,7 +263,6 @@ function changeColor (){
    colorLongBreak=hexaToRgb(colorLongBreak);
 }
 
-
 function hexaToRgb(hex) {
     // Elimina el símbolo "#" si está presente
     hex = hex.replace("#", "");
@@ -238,84 +276,44 @@ function hexaToRgb(hex) {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
-function editarActivdad(){
-    let i=0;
-   
-    const divsActividades=document.createElement("div");
-    const actividadInput=document.createElement("input");
-    const cancelButton=document.createElement("button");
-    const saveButton=document.createElement("button");
-    const deleteButton=document.createElement("button");
+function crearActivdad(){
+    const divsActividades=document.createElement("div");    
     const editarButton=document.createElement("button");
     const nombreActividad=document.createElement("span");
-    const ciclosNecesarios=document.createElement("span");
-    const ciclosNecesariosInput=document.createElement("input");
-
-
+    //const ciclosNecesarios=document.createElement("span");
+    ciclosNecesarios=document.createElement("span");
     actividadesDiv.appendChild(divsActividades);
-    divsActividades.appendChild(actividadInput);
-    divsActividades.appendChild(cancelButton);
-    divsActividades.appendChild(saveButton);
-    divsActividades.appendChild(deleteButton);
+    divsActividades.classList.add("divsActividadesCreados");
     divsActividades.appendChild(nombreActividad);
     divsActividades.appendChild(ciclosNecesarios);
-    divsActividades.appendChild(ciclosNecesariosInput);
+    divsActividades.appendChild(editarButton);
 
-    divsActividades.classList.add("divsActividadesCreados");
-    cancelButton.textContent="Cancelar";
-    saveButton.textContent="Guardar";
-    deleteButton.textContent="Eliminar";
     editarButton.textContent="Editar";
 
-    let actividadText=nombreActividad.textContent;
-    let ciclosNecesariosText=ciclosNecesarios.textContent;
-
-    cancelButton.addEventListener("click",(e)=>{
-        if (nombreActividad.textContent!=''){
-            nombreActividad.textContent=actividadText;
-            ciclosNecesarios.textContent=`${i}/${ciclosNecesariosText}`;
-            divsActividades.removeChild(actividadInput);
-            divsActividades.removeChild(cancelButton);
-            divsActividades.removeChild(saveButton);
-            divsActividades.removeChild(deleteButton);
-            divsActividades.removeChild(ciclosNecesariosInput);
-            divsActividades.appendChild(editarButton);
-            nombreActividad.style.display="block";
-        ciclosNecesarios.style.display="block";
-        }
-        else {actividadesDiv.removeChild(divsActividades);}
-    })
-
-    saveButton.addEventListener("click",(e)=>{
-        actividadText=actividadInput.value;
-        nombreActividad.textContent=actividadText;
-        divsActividades.removeChild(actividadInput);
-        divsActividades.removeChild(cancelButton);
-        divsActividades.removeChild(saveButton);
-        divsActividades.removeChild(deleteButton);
-        divsActividades.appendChild(editarButton);
-       ciclosNecesariosText=ciclosNecesariosInput.value;
-        ciclosNecesarios.textContent=`${i}/${ciclosNecesariosText}`;
-        divsActividades.removeChild(ciclosNecesariosInput);
-        nombreActividad.style.display="block";
-        ciclosNecesarios.style.display="block";
-    })
-
-    deleteButton.addEventListener("click",(e)=>{
-        actividadesDiv.removeChild(divsActividades);
-    })
-
+    nombreActividad.textContent=nombreActividadText;
+    ciclosNecesarios.textContent=`${ciclosTotales}/${ciclosNecesariosText}`;
     editarButton.addEventListener("click",(e)=>{
-        divsActividades.appendChild(actividadInput);
-        divsActividades.appendChild(cancelButton);
-        divsActividades.appendChild(saveButton);
-        divsActividades.appendChild(deleteButton);
-        divsActividades.removeChild(editarButton);
-        divsActividades.appendChild(ciclosNecesariosInput);
-
+        divsActividades.style.display="none";
+        actividadesEditor.style.display="flex";
         actividadInput.value=nombreActividad.textContent;
         actividadText=nombreActividad.textContent;
-        nombreActividad.style.display="none";
-        ciclosNecesarios.style.display="none";
     })
+    return divsActividades;
+}
+
+function contadorActividades(any){
+    
+    if (body.style.background==colorActi){//color rojo
+        if (i<any){
+            i++;
+        }
+    }
+    return i
+}
+
+function limpiarvaloresActividades(){
+    nombreActividadText='';
+    ciclosNecesariosText='';
+    inputTask.value='';
+    inputTaskCiclo.value='';    
 }
