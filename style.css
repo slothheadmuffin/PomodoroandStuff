@@ -37,14 +37,13 @@ p{
     height: 30px;*/
     border: 1px solid black;
 }
-
-.divsActividadesCreados{
-    width: 600px;
-    height: 60px;
-    border: 1px solid black;
-    display: flex;
-    justify-content: space-around;
+.divsActividadesEditor{
+    display: none;
 }
+.divsActividadesCreados{
+    display: flex;
+}
+
 /*IDs*/
 #timer{
     font-size: 72px;
@@ -95,3 +94,9 @@ p{
     
 }
 /*Varias cosas*/
+.divsActividadesCreados,.divsActividadesEditor{
+    width: 600px;
+    height: 60px;
+    border: 1px solid black;
+    justify-content: space-around;
+}
