@@ -56,3 +56,6 @@ Ropa 1/7dias
 
 
 # BUGS
+
+
+Necesito mejores nombres
