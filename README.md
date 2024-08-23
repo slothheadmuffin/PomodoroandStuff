@@ -36,7 +36,9 @@ Se bajo volumen base a 20% y se puede modificar el volumen
 Quiero que puedas escribir el tipo de actividad que se desea hacer, (estudiar, trabajar, etc.) (done)
 
 Puedes escoger cuantos ciclos de A planeas usar para el dia y/o semana (done)
-Por ejemplo necesito 8 ciclos diarios para trabajar y 4 ciclos diarios para estudiar
+Por ejemplo necesito 8 ciclos diarios para trabajar y 4 ciclos diarios para estudiar (done)
+
+poder seleccionar la actividad a realizar y que solo se modifiquen los ciclos de esa actividad
 
 ### TODO list
 Quiero una lista para cada dia de la semana y capacidad de añadir listas
@@ -54,5 +56,3 @@ Ropa 1/7dias
 
 
 # BUGS
-No es bug pero al modificar el timer no funcionan las flechitas (no bug)
-falta que el todolist se actualice cada que avanza un ciclo (no bug)
